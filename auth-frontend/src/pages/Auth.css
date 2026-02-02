@@ -1,0 +1,188 @@
+/* ===== RESET ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* ===== BACKGROUND ===== */
+body {
+    min-height: 100vh;
+    background: radial-gradient(
+            circle at 20% 20%,
+            #6a11cb,
+            transparent 40%
+    ),
+    radial-gradient(circle at 80% 80%, #2575fc, transparent 40%),
+    linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+    background-size: 200% 200%;
+    animation: bgMove 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes bgMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===== AUTH CARD ===== */
+.auth-wrapper {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 0 40px rgba(106, 17, 203, 0.5);
+    animation: cardAppear 0.9s ease forwards;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== TITLE ===== */
+.auth-title {
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* ===== INPUTS ===== */
+.auth-input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.auth-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.auth-input:focus {
+    border-color: #8e2de2;
+    box-shadow: 0 0 15px rgba(142, 45, 226, 0.8);
+    transform: scale(1.02);
+}
+
+/* ===== BUTTON ===== */
+.auth-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent
+    );
+    transition: 0.6s;
+}
+
+.auth-button:hover::after {
+    left: 120%;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(138, 43, 226, 1);
+}
+
+/* ===== MESSAGE ===== */
+.auth-message {
+    margin-top: 16px;
+    text-align: center;
+    color: #ffb3ff;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===== ERROR SHAKE ===== */
+.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-6px);
+    }
+    50% {
+        transform: translateX(6px);
+    }
+    75% {
+        transform: translateX(-6px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* ===== LINK ===== */
+.auth-link {
+    margin-top: 18px;
+    text-align: center;
+    color: #cbb4ff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px #8e2de2;
+}
