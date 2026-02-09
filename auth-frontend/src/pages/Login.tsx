@@ -28,6 +28,7 @@ export default function Login() {
 
             localStorage.setItem("token", data.token);
             setMessage("Успешный вход 🚀");
+            setTimeout(() => navigate("/profile"), 400);
         } catch {
             setMessage("Ошибка сервера");
         }

@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
     const token = localStorage.getItem("token");
@@ -13,7 +14,7 @@ function App() {
             <Route
                 path="/profile"
                 element={
-                    token ? <h2>Вы вошли в систему</h2> : <Navigate to="/login" />
+                    token ? <Profile /> : <Navigate to="/login" />
                 }
             />
         </Routes>

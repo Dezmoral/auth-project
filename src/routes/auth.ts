@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Response, Request } from "express";
 import { pool } from "../db";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -29,8 +29,8 @@ router.post("/register", async (req, res) => {
         const hash = await bcrypt.hash(password, 10);
 
         await pool.query(
-            `INSERT INTO users (email, password_hash, full_name)
-             VALUES ($1, $2, $3)`,
+            `INSERT INTO users (email, password_hash, full_name, role)
+             VALUES ($1, $2, $3, 'user')`,
             [email, hash, full_name]
         );
 
@@ -71,6 +71,7 @@ router.post("/login", async (req, res) => {
             {
                 id: user.rows[0].id,
                 email: user.rows[0].email,
+                role: user.rows[0].role,
             },
             process.env.JWT_SECRET as string,
             { expiresIn: "1h" }
