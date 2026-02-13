@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth";
 import protectedRouter from "./routes/protected";
+import tasksRouter from "./routes/tasks";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api", protectedRouter);
+app.use("/api", tasksRouter);
 
 const PORT = process.env.PORT || 5000;
 

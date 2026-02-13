@@ -38,6 +38,19 @@ export function auth(req: Request & { user?: JWTPayload }, res: Response, next: 
     }
 }
 
+// Generic role checker: use after auth
+export function requireRole(role: string) {
+    return (req: Request & { user?: JWTPayload }, res: Response, next: NextFunction) => {
+        if (!req.user) {
+            return res.status(401).json({ message: "Неавторизовано" });
+        }
+        if (req.user.role !== role) {
+            return res.status(403).json({ message: "Доступ запрещён: требуется роль " + role });
+        }
+        next();
+    };
+}
+
 // Ensures the authenticated user has admin role
 export function requireAdmin(req: Request & { user?: JWTPayload }, res: Response, next: NextFunction) {
     if (!req.user) {
